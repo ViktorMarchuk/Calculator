@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .input-container {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        div.error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        label[for="action"]::after {
+            content: ' (+ - / *)';
+            font-weight: bolder;
+        }
+
+
+        input[type="submit"] {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+<h3>SIMPLY CALCULATOR</h3>
+<form method="POST" th:action="@{/res}" th:object="${calculator}">
+    <div class="input-container">
+        <label for="a">Enter first value</label>
+        <input type="number" id="a" name="a">
+        <div class="error" th:if="${#fields.hasErrors('a')}" th:errors="*{a}">error</div>
+    </div>
+    <div class="input-container">
+        <label for="action">Enter only characters</label>
+        <input type="text" id="action" name="action">
+        <div class="error" th:if="${#fields.hasErrors('action')}" th:errors="*{action}">error</div>
+    </div>
+    <div class="input-container">
+        <label for="b">Enter second value</label>
+        <input type="number" id="b" name="b">
+        <div class="error" th:if="${#fields.hasErrors('b')}" th:errors="*{b}">error</div>
+    </div>
+    <input type="submit" value="Get result">
+</form>
+</body>
+</html>
